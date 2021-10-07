@@ -1,4 +1,4 @@
-name: github-actions
+name: cc-tests-coverage
 on: [push]
 jobs:
   github-actions-eslint:
