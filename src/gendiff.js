@@ -7,28 +7,27 @@ import { resolve } from 'path';
 // const filePath1 = path.resolve(`${__dirname}/${firstFile}`)
 // const filePath2 = path.resolve(`${__dirname}/${secondFile}`)
 
-const TAB = '  ';
+export const TAB = '  ';
 
-const Type = {
+export const Type = {
   EQUAL: 'EQUAL',
   REMOVED: 'REMOVED',
   ADDED: 'ADDED',
 };
 
-const PrefixByType = {
+export const PrefixByType = {
   [Type.EQUAL]: ' ',
   [Type.REMOVED]: '-',
   [Type.ADDED]: '+',
 };
 
-const readFile = (filePath) => JSON.parse(readFileSync(resolve(filePath)));
-const hasKey = (obj, key) => Object.prototype.hasOwnProperty.call(obj, key);
-const getItem = (obj, key, type) => [`${TAB + PrefixByType[type]} ${key}: ${obj[key]}`];
-const convertToJsonString = (array) => `{\n${array.join('\n')}\n}`;
-const commonKeys = (...objects) =>
-  [...new Set([...objects.flatMap((obj) => Object.keys(obj))])].sort();
+export const readFile = (filePath) => JSON.parse(readFileSync(resolve(process.cwd(), filePath)));
+export const hasKey = (obj, key) => Object.prototype.hasOwnProperty.call(obj, key);
+export const getItem = (obj, key, type) => [`${TAB + PrefixByType[type]} ${key}: ${obj[key]}`];
+export const convertToJsonString = (array) => `{\n${array.join('\n')}\n}`;
+export const commonKeys = (...objects) => [...new Set([...objects.flatMap(Object.keys)])].sort();
 
-const genDiff = (firstFile, secondFile) => {
+export const genDiff = (firstFile, secondFile) => {
   const oldObj = readFile(firstFile);
   const newObj = readFile(secondFile);
   const keys = commonKeys(oldObj, newObj);
@@ -56,5 +55,3 @@ const genDiff = (firstFile, secondFile) => {
 
   return convertToJsonString(diffs);
 };
-
-export default genDiff;
