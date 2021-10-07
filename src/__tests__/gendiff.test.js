@@ -20,7 +20,7 @@ test('getItem', () => {
 
 test('convertToJsonString', () => {
   const arr = ['  + timeout: 20', '  + verbose: true'];
-  const expected = '{\n' + '  + timeout: 20\n' + '  + verbose: true\n' + '}';
+  const expected = '{\n  + timeout: 20\n  + verbose: true\n}';
 
   expect(convertToJsonString(arr)).toBe(expected);
 });
