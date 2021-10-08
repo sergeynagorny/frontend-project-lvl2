@@ -2,10 +2,21 @@ import { readFileSync } from 'fs';
 import { extname, resolve } from 'path';
 import { load } from 'js-yaml';
 
+const ParserType = {
+  YAML: 'YAML',
+  JSON: 'JSON',
+};
+
 export const FileExt = {
   JSON: '.json',
   YAML: '.yaml',
   YML: '.yml',
+};
+
+const ParserTypeByFileExt = {
+  [FileExt.YAML]: ParserType.YAML,
+  [FileExt.YML]: ParserType.YAML,
+  [FileExt.JSON]: ParserType.JSON,
 };
 
 export function readFileData(filePath) {
@@ -17,12 +28,10 @@ export function readFileExt(filePath) {
 }
 
 export function parseDataByFileExt(file, fileExt) {
-  switch (fileExt) {
-    case FileExt.JSON:
+  switch (ParserTypeByFileExt[fileExt]) {
+    case ParserType.JSON:
       return JSON.parse(file);
-    case FileExt.YAML:
-      return load(file);
-    case FileExt.YML:
+    case ParserType.YAML:
       return load(file);
     default:
       return {};
