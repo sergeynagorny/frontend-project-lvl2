@@ -1,5 +1,4 @@
-import { readFileSync } from 'fs';
-import { resolve } from 'path';
+import { parseDataByFile } from './parsers';
 
 // import { fileURLToPath } from "url";
 // const __filename = fileURLToPath(import.meta.url);
@@ -21,15 +20,14 @@ export const PrefixByType = {
   [Type.ADDED]: '+',
 };
 
-export const readFile = (filePath) => JSON.parse(readFileSync(resolve(process.cwd(), filePath)));
 export const hasKey = (obj, key) => Object.prototype.hasOwnProperty.call(obj, key);
 export const getItem = (obj, key, type) => [`${TAB + PrefixByType[type]} ${key}: ${obj[key]}`];
 export const convertToJsonString = (array) => `{\n${array.join('\n')}\n}`;
 export const commonKeys = (...objects) => [...new Set([...objects.flatMap(Object.keys)])].sort();
 
 export const genDiff = (firstFile, secondFile) => {
-  const oldObj = readFile(firstFile);
-  const newObj = readFile(secondFile);
+  const oldObj = parseDataByFile(firstFile);
+  const newObj = parseDataByFile(secondFile);
   const keys = commonKeys(oldObj, newObj);
 
   const diffs = keys.reduce((acc, key) => {
