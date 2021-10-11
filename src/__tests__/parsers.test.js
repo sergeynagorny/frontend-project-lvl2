@@ -1,41 +1,21 @@
-import { join } from 'path';
-import { parseDataByFile, readFileExt } from '../parsers';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import fs from 'fs';
+import parseDataByFile from '../parsers';
 
-// const getFixturePath = (filename) => join(process.cwd(), 'src', '__fixtures__', filename);
-const getMockPath = (filename) => join(process.cwd(), 'src', '__mocks__', filename);
+// eslint-disable-next-line no-underscore-dangle
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-test('readFileExt', () => {
-  expect(readFileExt('index.HTML')).toBe('.html');
-});
+const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 
-// test('parseDataByFileExt', async () => {
-//   const json = readFile('file1.json');
-//   const yaml = readFile('file1.yaml');
-//   const yml = readFile('file1.yml');
-//
-//   const expected = {
-//     host: 'hexlet.io',
-//     timeout: 50,
-//     proxy: '123.234.53.22',
-//     follow: false,
-//   };
-//
-//   expect(parseDataByFileExt(jsonFilePath)).toBe(expected);
-// });
+test('parseDataByFile', () => {
+  const beforePathJson = getFixturePath('before.json');
+  const beforePathYaml = getFixturePath('before.yaml');
+  const beforePathYml = getFixturePath('before.yml');
 
-test('parseDataByFile', async () => {
-  const jsonPath = getMockPath('file1.json');
-  const yamlPath = getMockPath('file1.yaml');
-  const ymlPath = getMockPath('file1.yml');
+  const beforeParsed = fs.readFileSync(getFixturePath('before-parsed.json'), 'utf-8');
 
-  const expected = {
-    host: 'hexlet.io',
-    timeout: 50,
-    proxy: '123.234.53.22',
-    follow: false,
-  };
-
-  expect(parseDataByFile(jsonPath)).toStrictEqual(expected);
-  expect(parseDataByFile(yamlPath)).toStrictEqual(expected);
-  expect(parseDataByFile(ymlPath)).toStrictEqual(expected);
+  expect(parseDataByFile(beforePathJson)).toStrictEqual(JSON.parse(beforeParsed));
+  expect(parseDataByFile(beforePathYaml)).toStrictEqual(JSON.parse(beforeParsed));
+  expect(parseDataByFile(beforePathYml)).toStrictEqual(JSON.parse(beforeParsed));
 });
