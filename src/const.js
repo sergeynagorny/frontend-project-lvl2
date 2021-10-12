@@ -6,6 +6,11 @@ export const DiffType = {
   NESTED: 'NESTED',
 };
 
+export const FormatType = {
+  STYLISH: 'stylish',
+  PLAIN: 'plain',
+};
+
 export const PrefixByDiff = {
   [DiffType.ADDED]: '+',
   [DiffType.REMOVED]: '-',
