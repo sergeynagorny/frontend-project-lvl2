@@ -5,8 +5,9 @@ import genDiff from '../src/gendiff';
 program
   .argument('<first-file>', 'first file')
   .argument('<second-file>', 'second file')
-  .action((ff, sf) => {
-    console.log(genDiff(ff, sf));
+  .action((ff, sf, { format }) => {
+    const result = genDiff(ff, sf, format);
+    console.log(result);
   });
 
 program
