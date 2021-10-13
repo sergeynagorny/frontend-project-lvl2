@@ -9,6 +9,7 @@ export const DiffType = {
 export const FormatType = {
   STYLISH: 'stylish',
   PLAIN: 'plain',
+  JSON: 'json',
 };
 
 export const PrefixByDiff = {
