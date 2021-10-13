@@ -7,6 +7,7 @@ export default function plain(tree) {
     if (_.isUndefined(value)) return undefined;
     if (_.isObject(value)) return '[complex value]';
     if (_.isBoolean(value)) return value.toString();
+    if (_.isNumber(value)) return value.toString();
 
     return `'${value.toString()}'`;
   };
