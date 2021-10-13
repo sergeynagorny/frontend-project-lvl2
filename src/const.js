@@ -8,7 +8,7 @@ export const DiffType = {
 
 export const FormatType = {
   STYLISH: 'stylish',
-  PLAIN: 'text',
+  PLAIN: 'plain',
   JSON: 'json',
 };
 
