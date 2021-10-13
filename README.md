@@ -5,11 +5,11 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/e06d39188eb8d66ecb6c/test_coverage)](https://codeclimate.com/github/sergeynagorny/frontend-project-lvl2/test_coverage)
 
 # GenDiff
-✨ GenDiff – the small library to help you compare two objects for changes 
+A difference calculator is a program that determines the difference between two data structures.
 
-
-#### Support formats:
-`.json` `.yaml` `.yml`
+✨ Features of the utility:
+- Supports different input formats: `.json` `.yaml` `.yml`
+- Report generation as plain `text`, `stylish` and `json`
 
 ----
 ## Install
@@ -67,13 +67,13 @@ genDiff(beforeFilePath, afterFilePath, FormatType.STYLISH)
 }
 ```
 ----
-## Formatter Plain
+## Formatter Text
 [![asciicast](https://asciinema.org/a/Z2JbW8BUhcy7e7cw7JAg4Xz36.svg)](https://asciinema.org/a/Z2JbW8BUhcy7e7cw7JAg4Xz36)
 #### Code
 ```
 export genDiff, { FormatType } from 'genDiff'
 
-genDiff(beforeFilePath, afterFilePath, FormatType.PLAIN)
+genDiff(beforeFilePath, afterFilePath, FormatType.TEXT)
 ```
 #### Result
 ```
