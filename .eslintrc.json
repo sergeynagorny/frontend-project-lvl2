@@ -15,20 +15,18 @@
     },
     "rules": {
         "no-console": "off",
-        "arrow-body-style": "off",
         "import/extensions": 0,
         "prefer-arrow-callback": "off",
         "fp/no-loops": 0,
         "fp/no-let": 0,
         "fp/no-nil": 0,
         "fp/no-unused-expression": 0,
-        "fp/no-mutating-methods": 0,
+        "fp/no-mutating-methods": 2,
         "object-curly-newline": ["error"],
         "nonblock-statement-body-position": 2,
         "arrow-body-style": 2,
         "comma-dangle": 2,
         "implicit-arrow-linebreak": 2,
-        "function-paren-newline": 2,
-        "max-len": 0
+        "function-paren-newline": 2
     }
 }

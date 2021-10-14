@@ -30,7 +30,8 @@ export default function useStringify({ replacer = ' ', startDepth = 1, spaceCoun
         startDepth: depth,
       });
 
-      const values = Object.entries(value).map(([key, val]) => stringTemplate(key, stringify(val, depth + 1)));
+      const entries = Object.entries(value);
+      const values = entries.map(([key, val]) => stringTemplate(key, stringify(val, depth + 1)));
 
       return objectTemplate(values);
     },
