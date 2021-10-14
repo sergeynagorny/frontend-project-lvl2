@@ -15,5 +15,5 @@ test('gen diff', () => {
   const expected = fs.readFileSync(getFixturePath('stylish.txt'), 'utf-8');
   const result = genDiff(beforePath, afterPath, FormatType.STYLISH);
 
-  expect(result + EOF).toMatch(expected);
+  expect(result + EOF).toEqual(expected);
 });

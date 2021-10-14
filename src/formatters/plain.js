@@ -12,26 +12,28 @@ export default function plain(tree) {
     return `'${value.toString()}'`;
   };
 
-  const iter = (node, path = []) => {
-    return node.flatMap(({ key, value, prevValue, type, children }) => {
-      const fullPath = [...path, key].join('.');
-      if (type === DiffType.ADDED) {
-        return `Property '${fullPath}' was added with value: ${valueToString(value)}`;
-      }
-      if (type === DiffType.REMOVED) {
-        return `Property '${fullPath}' was removed`;
-      }
-      if (type === DiffType.CHANGED) {
-        return `Property '${fullPath}' was updated. From ${valueToString(
-          prevValue
-        )} to ${valueToString(value)}`;
-      }
-      if (type === DiffType.NESTED) {
-        return iter(children, [...path, key]);
-      }
-      return [];
-    });
-  };
+  const iter = (node, path = []) => node.flatMap((item) => {
+    const {
+      key, value, prevValue, type, children,
+    } = item;
+
+    const fullPath = [...path, key].join('.');
+    if (type === DiffType.ADDED) {
+      return `Property '${fullPath}' was added with value: ${valueToString(value)}`;
+    }
+    if (type === DiffType.REMOVED) {
+      return `Property '${fullPath}' was removed`;
+    }
+    if (type === DiffType.CHANGED) {
+      return `Property '${fullPath}' was updated. From ${valueToString(
+        prevValue,
+      )} to ${valueToString(value)}`;
+    }
+    if (type === DiffType.NESTED) {
+      return iter(children, [...path, key]);
+    }
+    return [];
+  });
 
   return iter(tree).join('\n');
 }

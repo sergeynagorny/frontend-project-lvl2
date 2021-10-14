@@ -9,7 +9,9 @@ export default (tree) => {
       spaceCount: SPACE_COUNT,
     });
 
-    const values = node.map(({ key, value, prevValue, type, children }) => {
+    const values = node.map(({
+      key, value, prevValue, type, children,
+    }) => {
       const getString = (stringType = type, stringValue = value) => {
         const prefix = PrefixByDiff[stringType];
         const val = children ? iter(children, depth + 1) : stringify(stringValue, depth + 1);
