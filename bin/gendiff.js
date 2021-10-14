@@ -1,6 +1,6 @@
-#!/usr/bin/env node --experimental-specifier-resolution=node
+#!/usr/bin/env node
 import { program } from 'commander';
-import genDiff from '../src/gendiff';
+import genDiff from '../src/gendiff.js';
 
 program
   .argument('<first-file>', 'first file')

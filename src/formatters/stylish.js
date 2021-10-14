@@ -1,5 +1,5 @@
-import { DiffType, PrefixByDiff } from '../const';
-import useStringify from '../stringify';
+import { DiffType, PrefixByDiff } from '../const.js';
+import useStringify from '../stringify.js';
 
 export default (tree) => {
   const SPACE_COUNT = 4;
@@ -9,7 +9,9 @@ export default (tree) => {
       spaceCount: SPACE_COUNT,
     });
 
-    const values = node.map(({ key, value, prevValue, type, children }) => {
+    const values = node.map(({
+      key, value, prevValue, type, children,
+    }) => {
       const getString = (stringType = type, stringValue = value) => {
         const prefix = PrefixByDiff[stringType];
         const val = children ? iter(children, depth + 1) : stringify(stringValue, depth + 1);

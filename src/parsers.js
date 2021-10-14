@@ -1,7 +1,7 @@
 import { readFileSync } from 'fs';
 import { extname, resolve } from 'path';
 import { load } from 'js-yaml';
-import { ParserType, ParserTypeByFileExt } from './const';
+import { ParserType, ParserTypeByFileExt } from './const.js';
 
 export function readFileData(filePath) {
   return readFileSync(resolve(process.cwd(), filePath));

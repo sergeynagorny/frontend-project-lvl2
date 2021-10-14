@@ -47,15 +47,7 @@ const cases = [
   ['...', undefined, 5],
 ];
 
-const expectedData = { nested: [], plain: [] };
 const primitiveValues = Object.values(primitives).map((v) => [v]);
-
-beforeAll(() => {
-  const plainData = fs.readFileSync(getFixturePath('plain.txt'), 'utf-8');
-  const nestedData = fs.readFileSync(getFixturePath('nested.txt'), 'utf-8');
-  expectedData.plain = plainData.trim().split('\n\n\n');
-  expectedData.nested = nestedData.trim().split('\n\n\n');
-});
 
 describe.each(primitiveValues)('stringify', (value) => {
   const expected = `${value}`;
@@ -65,7 +57,10 @@ describe.each(primitiveValues)('stringify', (value) => {
 
 describe.each(cases)('replacer "%s" repeated %s times', (replacer, spacesCount, caseIndex) => {
   test('plain object', () => {
-    const expected = expectedData.plain[caseIndex];
+    const plainData = fs.readFileSync(getFixturePath('plain.txt'), 'utf-8');
+    const formattedData = plainData.trim().split('\n\n\n');
+    const expected = formattedData[caseIndex];
+
     const { stringify } = useStringify({ replacer, spaceCount: spacesCount });
     const actual = stringify(primitives);
 
@@ -73,7 +68,10 @@ describe.each(cases)('replacer "%s" repeated %s times', (replacer, spacesCount, 
   });
 
   test('nested object', () => {
-    const expected = expectedData.nested[caseIndex];
+    const nestedData = fs.readFileSync(getFixturePath('nested.txt'), 'utf-8');
+    const formattedData = nestedData.trim().split('\n\n\n');
+    const expected = formattedData[caseIndex];
+
     const { stringify } = useStringify({ replacer, spaceCount: spacesCount });
     const actual = stringify(nested);
 

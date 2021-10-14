@@ -6,17 +6,27 @@
     },
     "extends": [
         "airbnb-base",
-        "prettier"
+        "plugin:fp/recommended"
     ],
-    "plugins": ["prettier", "jest"],
+    "plugins": ["jest", "fp"],
     "parserOptions": {
         "ecmaVersion": 12,
         "sourceType": "module"
     },
     "rules": {
         "no-console": "off",
-        "prettier/prettier": "error",
-        "arrow-body-style": "off",
-        "prefer-arrow-callback": "off"
+        "import/extensions": 0,
+        "prefer-arrow-callback": "off",
+        "fp/no-loops": 0,
+        "fp/no-let": 0,
+        "fp/no-nil": 0,
+        "fp/no-unused-expression": 0,
+        "fp/no-mutating-methods": 2,
+        "object-curly-newline": ["error"],
+        "nonblock-statement-body-position": 2,
+        "arrow-body-style": 2,
+        "comma-dangle": 2,
+        "implicit-arrow-linebreak": 2,
+        "function-paren-newline": 2
     }
 }
