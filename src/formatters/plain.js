@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { DiffType } from '../const';
+import { DiffType } from '../const.js';
 
 export default function plain(tree) {
   const valueToString = (value) => {

@@ -1,6 +1,6 @@
-import parseData from './parsers';
-import calcDiff from './calcdiff';
-import formatDiff from './formatters/formatDiff';
+import parseData from './parsers.js';
+import calcDiff from './calcdiff.js';
+import formatDiff from './formatters/formatDiff.js';
 
 export default function genDiff(firstFile, secondFile, formatType) {
   const oldObj = parseData(firstFile);

@@ -1,5 +1,5 @@
-import { DiffType, PrefixByDiff } from '../const';
-import useStringify from '../stringify';
+import { DiffType, PrefixByDiff } from '../const.js';
+import useStringify from '../stringify.js';
 
 export default (tree) => {
   const SPACE_COUNT = 4;

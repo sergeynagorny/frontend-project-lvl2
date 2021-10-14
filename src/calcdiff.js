@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { DiffType } from './const';
+import { DiffType } from './const.js';
 
 export function assignKeys(...objs) {
   return _.orderBy(_.union(objs.flatMap(Object.keys)));
